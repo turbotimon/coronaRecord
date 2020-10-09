@@ -24,6 +24,19 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         inflater = LayoutInflater.from(context);
     }
 
+    public void add(Person person){
+        person.setSelected(true);
+        personArrayList.add(person);
+        notifyItemInserted(personArrayList.size());
+    }
+
+    public void remove(Person person) {
+        int position = personArrayList.indexOf(person);
+        personArrayList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+
     @NonNull
     @Override
     public PersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,7 +50,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         Person person = personArrayList.get(position);
         holder.name.setText(person.getName());
         holder.contactInfo.setText(person.getContactInfo());
-        holder.checkbox.setActivated(person.getSelected());
+        holder.checkbox.setSelected(person.getSelected());
         holder.checkbox.setOnClickListener(v -> {
             person.setSelected(v.isSelected());
         });
