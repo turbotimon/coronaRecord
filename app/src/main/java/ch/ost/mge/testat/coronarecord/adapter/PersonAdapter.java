@@ -54,7 +54,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         Person person = personArrayList.get(position);
         holder.name.setText(person.getName());
         holder.contactInfo.setText(person.getContactInfo());
-        holder.checkbox.setSelected(person.getSelected());
+        holder.checkbox.setChecked(person.getSelected());
         holder.checkbox.setOnClickListener(v -> {
             person.setSelected(v.isSelected());
         });
