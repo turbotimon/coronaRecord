@@ -4,29 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
 
-public class MainActivity extends AppCompatActivity {
-
-    private MaterialButton btnEnterCode;
+public class LocationSelectActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_location_select);
 
         initEventHandlers();
-
 
     }
 
     private void initEventHandlers(){
-
-        btnEnterCode = this.findViewById(R.id.main_btn_entercode);
-        btnEnterCode.setOnClickListener( v -> {
-            Intent locationSelect = new Intent(this, LocationSelectActivity.class);
+        MaterialButton btnCheck;
+        btnCheck = this.findViewById(R.id.locationselect_btn_check);
+        btnCheck.setOnClickListener( v -> {
+            Intent locationSelect = new Intent(this, PersonSelectActivity.class);
             startActivity(locationSelect);
         });
 
