@@ -22,7 +22,7 @@ public class LocationService {
         return locations.get(code);
     }
 
-    public static boolean isExisting(int code){
+    public static boolean containsCode(int code){
         checkLoaded();
         return locations.containsKey(code);
     }

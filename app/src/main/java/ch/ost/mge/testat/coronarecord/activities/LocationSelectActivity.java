@@ -84,7 +84,7 @@ public class LocationSelectActivity extends AppCompatActivity {
 
 
     public boolean isCodeValid(int code){
-        return LocationService.isExisting(code);
+        return LocationService.containsCode(code);
     }
 
     public int getEditCodeValue(){
