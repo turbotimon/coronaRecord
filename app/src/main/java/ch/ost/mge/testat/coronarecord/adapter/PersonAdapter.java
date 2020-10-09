@@ -12,30 +12,34 @@ import java.util.ArrayList;
 
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.model.Person;
+import ch.ost.mge.testat.coronarecord.services.PersonService;
 
 public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
     Context context;
+    PersonService personService;
     ArrayList<Person> personArrayList;
     LayoutInflater inflater;
 
-    public PersonAdapter(Context context, ArrayList<Person> personArrayList) {
+    public PersonAdapter(Context context, PersonService personService) {
         this.context = context;
-        this.personArrayList = personArrayList;
+        this.personService = personService;
+        this.personArrayList = personService.getPersonArrayList();
         inflater = LayoutInflater.from(context);
     }
 
     public void add(Person person){
         person.setSelected(true);
+        personService.onAdd(person);
         personArrayList.add(person);
         notifyItemInserted(personArrayList.size());
     }
 
     public void remove(Person person) {
         int position = personArrayList.indexOf(person);
+        personService.onRemove(person);
         personArrayList.remove(position);
         notifyItemRemoved(position);
     }
-
 
     @NonNull
     @Override
