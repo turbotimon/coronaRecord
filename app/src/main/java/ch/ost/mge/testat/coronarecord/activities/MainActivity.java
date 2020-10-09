@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         FileService fs = new FileService(this,"testFile");
         fs.write(111);
         int in = fs.read();
-        Log.v("LOG_FileService", Integer.toString(in));
+        Log.v("coronaRecord", Integer.toString(in));
     }
 
     //TODO clear after test

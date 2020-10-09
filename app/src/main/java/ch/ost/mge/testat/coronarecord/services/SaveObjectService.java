@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 
 public class SaveObjectService {
 
+    //TODO Fehlerhandling verbessern? Excepts zurückgeben oder sonst was...
+
     public static void save(Context context, String filename, Object object) {
         try {
             FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
@@ -18,7 +20,7 @@ public class SaveObjectService {
             os.close();
             fos.close();
         } catch (Exception e){
-            Log.v("coronaRecord", "SaveObjectService.save failed");
+            Log.v("coronaRecord", "SaveObjectService.save failed: " + filename);
         }
     }
 
@@ -33,7 +35,7 @@ public class SaveObjectService {
             fis.close();
             return object;
         }catch (Exception e){
-            Log.v("coronaRecord", "SaveObjectService.load failed");
+            Log.v("coronaRecord", "SaveObjectService.load failed: " + filename);
             return null;
         }
     }

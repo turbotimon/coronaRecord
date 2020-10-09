@@ -23,7 +23,6 @@ public class FileService {
             fos.write(b);
             fos.close();
         } catch (Exception e) {
-
         }
     }
 
