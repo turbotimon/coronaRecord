@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ch.ost.mge.testat.coronarecord.model.Person;
 
 public class PersonService {
+
     private static PersonService personService = new PersonService();
     ArrayList<Person> personArrayList = new ArrayList<>();
 
