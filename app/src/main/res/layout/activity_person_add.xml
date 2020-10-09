@@ -4,6 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".PersonAdd">
+
+
+    <TextView
+        android:id="@+id/personadd_lbl_firstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="Firstname"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/personadd_edit_firstname" />
+
+    <TextView
+        android:id="@+id/personadd_lbl_lastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="Lastname"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/personadd_edit_lastname" />
+
+    <TextView
+        android:id="@+id/personadd_lbl_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="Phone"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/personadd_edit_phone" />
+
+    <TextView
+        android:id="@+id/personadd_lbl_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="Email"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/personadd_edit_email" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="personadd_lbl_firstname,personadd_lbl_lastname,personadd_lbl_phone,personadd_lbl_email" />
+
+    <EditText
+        android:id="@+id/personadd_edit_firstname"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/personadd_edit_lastname"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/personadd_edit_firstname"/>
+
+    <EditText
+        android:id="@+id/personadd_edit_phone"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
+        android:inputType="phone"
+        app:layout_constraintStart_toEndOf="@id/barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/personadd_edit_lastname" />
+
+    <EditText
+        android:id="@+id/personadd_edit_email"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toEndOf="@id/barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/personadd_edit_phone" />
+
+    <Button
+        android:id="@+id/personadd_btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/personadd_btn_save"/>
+
+    <Button
+        android:id="@+id/personadd_btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
