@@ -4,8 +4,8 @@ import android.content.Context;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
+//TODO sinnvoll machen oder löschen falls nicht benötigt
 
 public class FileService {
 
