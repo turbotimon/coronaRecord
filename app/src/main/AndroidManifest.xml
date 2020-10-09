@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".LocationSelect"></activity>
         <activity android:name=".PersonAdd" />
-        <activity android:name=".PersonSelect" />
+        <activity android:name=".PersonSelectActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
