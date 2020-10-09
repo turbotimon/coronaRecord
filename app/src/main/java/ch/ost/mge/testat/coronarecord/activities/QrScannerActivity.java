@@ -33,6 +33,7 @@ import ch.ost.mge.testat.coronarecord.services.QRCodeImageAnalyzer;
 // R-
 import ch.ost.mge.testat.coronarecord.R;
 // -R
+
 public class QrScannerActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CAMERA = 0;
 
@@ -47,9 +48,9 @@ public class QrScannerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        previewView = findViewById(R.id.activity_main_previewView);
+        previewView = findViewById(R.id.qrscanner_preview);
 
-        qrCodeFoundButton = findViewById(R.id.activity_main_qrCodeFoundButton);
+        qrCodeFoundButton = findViewById(R.id.qrscanner_btn_found);
         qrCodeFoundButton.setVisibility(View.INVISIBLE);
         qrCodeFoundButton.setOnClickListener(new View.OnClickListener() {
             @Override
