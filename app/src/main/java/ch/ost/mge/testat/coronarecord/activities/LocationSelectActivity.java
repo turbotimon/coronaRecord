@@ -1,4 +1,4 @@
-package ch.ost.mge.testat.coronarecord;
+package ch.ost.mge.testat.coronarecord.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.button.MaterialButton;
+
+import ch.ost.mge.testat.coronarecord.R;
 
 public class LocationSelectActivity extends AppCompatActivity {
 

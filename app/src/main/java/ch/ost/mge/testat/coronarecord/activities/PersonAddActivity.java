@@ -1,8 +1,10 @@
-package ch.ost.mge.testat.coronarecord;
+package ch.ost.mge.testat.coronarecord.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import ch.ost.mge.testat.coronarecord.R;
 
 public class PersonAddActivity extends AppCompatActivity {
 
