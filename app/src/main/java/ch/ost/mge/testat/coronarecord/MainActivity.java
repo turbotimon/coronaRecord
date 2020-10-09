@@ -1,4 +1,4 @@
-git package ch.ost.mge.testat.coronarecord;
+package ch.ost.mge.testat.coronarecord;
 
 import androidx.appcompat.app.AppCompatActivity;
 
