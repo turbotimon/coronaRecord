@@ -5,12 +5,13 @@ import java.util.Objects;
 
 public class Person implements Serializable {
 
-    static long ID=0;
+    static long ID = 0;
 
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
+    private Boolean selected = false;
     private final long unique_ID;
 
     public Person(String firstName, String lastName, String phone, String email) {
@@ -19,6 +20,14 @@ public class Person implements Serializable {
         this.phone = phone;
         this.email = email;
         this.unique_ID = ++ID;
+    }
+
+    public String getName() {
+        return firstName + ' ' + lastName;
+    }
+
+    public String getContactInfo() {
+        return phone + " | " + email;
     }
 
     public String getFirstName() {
@@ -35,10 +44,6 @@ public class Person implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getName() {
-        return firstName + ' ' + lastName;
     }
 
     public String getPhone() {
@@ -61,6 +66,14 @@ public class Person implements Serializable {
         return unique_ID;
     }
 
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,5 +89,4 @@ public class Person implements Serializable {
     public int hashCode() {
         return Objects.hash(firstName, lastName, phone, email);
     }
-
 }

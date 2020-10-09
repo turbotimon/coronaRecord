@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/rowitem_person_select_lbl_name"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:text="Max Muster"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rowitem_person_select_cb_selected"
+    />
+
+    <TextView
+        android:id="@+id/rowitem_person_select_lbl_contactinfo"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:text="079 712 98 17 | max@muster.ch"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/rowitem_person_select_lbl_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rowitem_person_select_cb_selected"
+        />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/rowitem_person_select_cb_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent
+"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
