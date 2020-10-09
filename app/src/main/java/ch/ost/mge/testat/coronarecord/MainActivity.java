@@ -17,10 +17,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnEnterCode.setOnClickListener( v -> {
-            Intent intent = new Intent(this, LocationSelectActivity)
-        });
+        initEventHandlers();
 
 
     }
+
+    private void initEventHandlers(){
+
+        btnEnterCode.setOnClickListener( v -> {
+            Intent locationSelect = new Intent(this, LocationSelectActivity.class);
+            startActivity(locationSelect);
+        });
+
+    }
+
 }
