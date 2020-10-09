@@ -14,9 +14,11 @@ import java.util.Objects;
 
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.adapter.PersonAdapter;
+import ch.ost.mge.testat.coronarecord.model.Location;
 import ch.ost.mge.testat.coronarecord.model.Person;
 import ch.ost.mge.testat.coronarecord.model.Report;
 import ch.ost.mge.testat.coronarecord.services.PersonService;
+import ch.ost.mge.testat.coronarecord.services.ReportService;
 
 public class PersonSelectActivity extends AppCompatActivity {
     public final static int REQ_CODE_NEW_PERSON = 1;
@@ -24,7 +26,9 @@ public class PersonSelectActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     PersonAdapter personAdapter;
     FloatingActionButton fabAddPerson;
+    FloatingActionButton fabSend;
     Report report;
+    Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,10 @@ public class PersonSelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_person_select);
 
         report = new Report();
+
+        int locationCode = (int) Objects.requireNonNull(getIntent().getExtras()).getInt("code");
+        location = new Location(0,0,""); // TODO: load location from locationservice
+        report.setLocation(location);
 
         recyclerView = findViewById(R.id.personselect_rv_persons);
         personAdapter = new PersonAdapter(this, new PersonService());
@@ -43,6 +51,13 @@ public class PersonSelectActivity extends AppCompatActivity {
         fabAddPerson.setOnClickListener(v -> {
             Intent secondActivityIntent = new Intent(this, PersonAddActivity.class);
             startActivityForResult(secondActivityIntent, REQ_CODE_NEW_PERSON);
+        });
+
+        fabSend = findViewById(R.id.personselect_fab_send);
+        fabSend.setOnClickListener(v -> {
+            report.setPersonArrayList(personAdapter.getSelectedPerson());
+            ReportService.send(report);
+            // TODO: finish activity and go back to home screen
         });
 
     }
