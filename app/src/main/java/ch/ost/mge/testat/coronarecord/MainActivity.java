@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initEventHandlers(){
 
+        btnEnterCode = this.findViewById(R.id.main_btn_entercode);
         btnEnterCode.setOnClickListener( v -> {
             Intent locationSelect = new Intent(this, LocationSelectActivity.class);
             startActivity(locationSelect);
