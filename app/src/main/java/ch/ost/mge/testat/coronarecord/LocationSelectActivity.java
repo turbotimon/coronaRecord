@@ -22,7 +22,7 @@ public class LocationSelectActivity extends AppCompatActivity {
         MaterialButton btnCheck;
         btnCheck = this.findViewById(R.id.locationselect_btn_check);
         btnCheck.setOnClickListener( v -> {
-            Intent locationSelect = new Intent(this, person);
+            Intent locationSelect = new Intent(this, PersonSelectActivity.class);
             startActivity(locationSelect);
         });
 
