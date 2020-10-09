@@ -17,6 +17,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/personselect_fab_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_baseline_send_24"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@id/personselect_fab_addperson"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/personselect_fab_addperson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
