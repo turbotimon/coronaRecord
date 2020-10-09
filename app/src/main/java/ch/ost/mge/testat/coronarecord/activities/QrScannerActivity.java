@@ -34,7 +34,7 @@ import ch.ost.mge.testat.coronarecord.services.QRCodeImageAnalyzer;
 import ch.ost.mge.testat.coronarecord.R;
 // -R
 
-public class QrScannerActivity extends AppCompatActivity {
+public class QrScannerActivity extends AppCompatActivity  {
     private static final int PERMISSION_REQUEST_CAMERA = 0;
 
     private PreviewView previewView;
@@ -46,7 +46,7 @@ public class QrScannerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_qr_scanner);
 
         previewView = findViewById(R.id.qrscanner_preview);
 
