@@ -8,21 +8,25 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/welcome_txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/welcome_frame_runner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_verticalBias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_verticalBias="0.25" />
 
     <FrameLayout
-        android:id="@+id/welcome_frame_runner"
+        android:id="@+id/welcome_container_runner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/welcome_txt_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.5"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
