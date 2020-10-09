@@ -22,6 +22,10 @@ public class Person implements Serializable {
         this.unique_ID = ++ID;
     }
 
+    public Person(){
+        this.unique_ID = ++ID;
+    }
+
     public String getName() {
         return firstName + ' ' + lastName;
     }

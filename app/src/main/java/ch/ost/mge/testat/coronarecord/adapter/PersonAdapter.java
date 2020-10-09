@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.model.Person;
@@ -54,7 +55,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         Person person = personArrayList.get(position);
         holder.name.setText(person.getName());
         holder.contactInfo.setText(person.getContactInfo());
-        holder.checkbox.setSelected(person.getSelected());
+        holder.checkbox.setChecked(person.getSelected());
         holder.checkbox.setOnClickListener(v -> {
             person.setSelected(v.isSelected());
         });
@@ -63,5 +64,20 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
     @Override
     public int getItemCount() {
         return personArrayList.size();
+    }
+
+    public ArrayList<Person> getSelectedPerson() {
+        ArrayList<Person> resPersonArrayList = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            resPersonArrayList = (ArrayList<Person>) personArrayList.stream().filter(Person::getSelected).collect(Collectors.toList());
+        } else {
+            for (Person person : personArrayList) {
+                if(person.getSelected()){
+                    resPersonArrayList.add(person);
+                }
+            }
+        }
+
+        return resPersonArrayList;
     }
 }

@@ -1,5 +1,6 @@
 package ch.ost.mge.testat.coronarecord.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -9,9 +10,7 @@ public class Report {
     private Location location;
     private Date arrived = Calendar.getInstance().getTime();
     private Date departed;
-
-    // TODO: add List<Person>
-
+    private ArrayList<Person> personArrayList;
 
     public Integer getId() {
         return id;
@@ -19,6 +18,14 @@ public class Report {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public ArrayList<Person> getPersonArrayList() {
+        return personArrayList;
+    }
+
+    public void setPersonArrayList(ArrayList<Person> personArrayList) {
+        this.personArrayList = personArrayList;
     }
 
     public Location getLocation() {
