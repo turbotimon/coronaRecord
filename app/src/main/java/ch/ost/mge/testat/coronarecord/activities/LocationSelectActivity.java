@@ -88,7 +88,7 @@ public class LocationSelectActivity extends AppCompatActivity {
     }
 
     public int getEditCodeValue(){
-        return Integer.parseInt(editCode.getText().toString());
+            return Integer.parseInt(editCode.getText().toString());
     }
 
 
