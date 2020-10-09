@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">coronaRecord</string>
+    <string name="locationselect_invalid_code_length">Code must be exact 6 digits long</string>
+    <string name="locationselect_invalid_code">This code is not valid</string>
 </resources>
