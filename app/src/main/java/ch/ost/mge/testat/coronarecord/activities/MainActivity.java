@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private void testFile(){
 
         FileService fs = new FileService(this,"testFile");
-        fs.write(999);
+        fs.write(111);
         int in = fs.read();
-        Log.v("FileService", Integer.toString(in));
+        Log.v("LOG_FileService", Integer.toString(in));
     }
 
 }
