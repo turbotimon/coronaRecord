@@ -37,7 +37,7 @@ public class PersonSelectActivity extends AppCompatActivity {
 
         report = new Report();
 
-        int locationCode = (int) getIntent().getExtras().getInt("code");
+        int locationCode = (int) Objects.requireNonNull(getIntent().getExtras()).getInt("code");
         location = new Location(0,0,""); // TODO: load location from locationservice
         report.setLocation(location);
 

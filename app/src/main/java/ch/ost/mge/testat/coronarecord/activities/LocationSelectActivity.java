@@ -48,7 +48,7 @@ public class LocationSelectActivity extends AppCompatActivity {
             }
 
             Intent locationSelect = new Intent(this, PersonSelectActivity.class);
-            getIntent().putExtra("code", code);
+            locationSelect.putExtra("code", code);
             startActivity(locationSelect);
 
         });
