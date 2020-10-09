@@ -15,6 +15,7 @@ import ch.ost.mge.testat.coronarecord.fragments.SpinnerFragment;
 import ch.ost.mge.testat.coronarecord.model.People;
 import ch.ost.mge.testat.coronarecord.model.Person;
 import ch.ost.mge.testat.coronarecord.services.FileService;
+import ch.ost.mge.testat.coronarecord.services.LocationService;
 import ch.ost.mge.testat.coronarecord.services.SaveObjectService;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -22,14 +23,17 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_welcome);
 
         showSpinnerFragment();
 
-        //TODO nur zu Demozwecken
+        // Service initialisation
+        LocationService.load();
+
+        //TODO nur zu Demozwecken mit wait
         wait(1000, () -> {
-            Intent welcomeAcitivty = new Intent(this, WelcomeActivity.class);
-            startActivity(welcomeAcitivty);
+            Intent mainActivity = new Intent(this, MainActivity.class);
+            startActivity(mainActivity);
         });
 
     }

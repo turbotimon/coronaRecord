@@ -31,8 +31,6 @@ public class LocationSelectActivity extends AppCompatActivity {
 
     private void initResources(){
 
-        LocationService.load(); //TODO besser beim Welcome-Screen laden, da App kurz unterbricht
-
         btnCheck = this.findViewById(R.id.locationselect_btn_check);
         editCode = this.findViewById(R.id.locationselect_edit_code);
 
