@@ -15,15 +15,24 @@ import ch.ost.mge.testat.coronarecord.model.Location;
 
 public class LocationSelectActivity extends AppCompatActivity {
 
-    private MaterialButton btnCheck = this.findViewById(R.id.locationselect_btn_check);
-    private TextInputEditText editCode = this.findViewById(R.id.locationselect_edit_code);
+    private MaterialButton btnCheck;
+    private TextInputEditText editCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_select);
 
+        initResources();
         initEventHandlers();
+
+    }
+
+    private void initResources(){
+        btnCheck = this.findViewById(R.id.locationselect_btn_check);
+        editCode = this.findViewById(R.id.locationselect_edit_code);
+
+        if (btnCheck == null || editCode == null) throw new NullPointerException("Resources not found");
 
     }
 
@@ -59,18 +68,21 @@ public class LocationSelectActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (s.length() != Location.CODE_LENGTH) {
                     editCode.setError(getString(R.string.locationselect_invalid_code_length));
+                    btnCheck.setEnabled(false);
                 } else {
                     editCode.setError(null);
+                    btnCheck.setEnabled(true);
                 }
             }
         });
 
     }
 
+
     public boolean isCodeValid(int code){
 
         //TODO check if code exist
-        if (editCode.length() != Location.CODE_LENGTH) return true;
+        if (true) return true;
 
         return false;
     }
