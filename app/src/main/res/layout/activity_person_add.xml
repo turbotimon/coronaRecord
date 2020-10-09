@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:text="Firstname"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@id/personadd_edit_firstname" />
 
@@ -26,7 +26,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:text="Lastname"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@id/personadd_edit_lastname" />
 
@@ -37,7 +37,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:text="Phone"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@id/personadd_edit_phone" />
 
@@ -48,7 +48,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:text="Email"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@id/personadd_edit_email" />
 
@@ -59,7 +59,7 @@
         app:barrierDirection="end"
         app:constraint_referenced_ids="personadd_lbl_firstname,personadd_lbl_lastname,personadd_lbl_phone,personadd_lbl_email" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/personadd_edit_firstname"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
@@ -68,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/personadd_edit_lastname"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
@@ -77,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/personadd_edit_firstname"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/personadd_edit_phone"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/personadd_edit_lastname" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/personadd_edit_email"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
@@ -97,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/personadd_edit_phone" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/personadd_btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/personadd_btn_save"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/personadd_btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
