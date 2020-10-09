@@ -8,7 +8,7 @@ import ch.ost.mge.testat.coronarecord.model.Location;
 
 public class LocationService extends Application {
 
-    private static HashMap<Integer, Location> locations;
+    private static HashMap<Integer, Location> locations = new HashMap<>();
     private static Boolean loaded = false; //TODO remove?
     private static String filename = "locations";
     private static LocationService locationService = new LocationService();
@@ -54,6 +54,7 @@ public class LocationService extends Application {
         locations.put(t1.getCode(), t1);
         locations.put(t2.getCode(), t2);
         locations.put(t3.getCode(), t3);
+        LocationService.saveToLocalStorage();
     }
 
 
