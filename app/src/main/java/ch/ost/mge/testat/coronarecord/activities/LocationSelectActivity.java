@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.model.Location;
+import ch.ost.mge.testat.coronarecord.services.LocationService;
 
 public class LocationSelectActivity extends AppCompatActivity {
 
@@ -29,6 +30,9 @@ public class LocationSelectActivity extends AppCompatActivity {
     }
 
     private void initResources(){
+
+        LocationService.load(); //TODO besser beim Welcome-Screen laden, da App kurz unterbricht
+
         btnCheck = this.findViewById(R.id.locationselect_btn_check);
         editCode = this.findViewById(R.id.locationselect_edit_code);
 
@@ -80,11 +84,7 @@ public class LocationSelectActivity extends AppCompatActivity {
 
 
     public boolean isCodeValid(int code){
-
-        //TODO check if code exist
-        if (true) return true;
-
-        return false;
+        return LocationService.containsCode(code);
     }
 
     public int getEditCodeValue(){
