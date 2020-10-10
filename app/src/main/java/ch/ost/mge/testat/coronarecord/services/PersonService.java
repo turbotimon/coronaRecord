@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import ch.ost.mge.testat.coronarecord.model.Person;
 
 public class PersonService {
-
-    private static PersonService personService = new PersonService(); //TODO Timon: check if needed??? (merge conflict, not sure if needed or not)
-
     ArrayList<Person> personArrayList = new ArrayList<>();
 
     public PersonService() {
