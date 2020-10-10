@@ -17,8 +17,6 @@ import ch.ost.mge.testat.coronarecord.services.SaveObjectService;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MaterialButton btnEnterCode;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void initEventHandlers(){
 
-        btnEnterCode = this.findViewById(R.id.main_btn_entercode);
+        MaterialButton btnEnterCode = this.findViewById(R.id.main_btn_entercode);
         btnEnterCode.setOnClickListener( v -> {
             Intent locationSelect = new Intent(this, LocationSelectActivity.class);
             startActivity(locationSelect);
+        });
+
+        MaterialButton scanQr = this.findViewById(R.id.main_btn_scanqr);
+        scanQr.setOnClickListener( v -> {
+            Intent qrScanner = new Intent(this, QrScannerActivity.class);
+            startActivity(qrScanner);
         });
 
     }
