@@ -22,6 +22,15 @@ public class Person implements Serializable {
         this.unique_ID = ++ID;
     }
 
+    public Person(ch.ost.mge.testat.coronarecord.database.Person person) {
+        unique_ID = person.id;
+        firstName = person.firstName;
+        lastName = person.lastName;
+        email = person.email;
+        phone = person.phone;
+        selected = person.selected;
+    }
+
     public Person(){
         this.unique_ID = ++ID;
     }
@@ -92,5 +101,18 @@ public class Person implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName, phone, email);
+    }
+
+    public ch.ost.mge.testat.coronarecord.database.Person getPersonForDao(){
+        ch.ost.mge.testat.coronarecord.database.Person person = new ch.ost.mge.testat.coronarecord.database.Person();
+
+        person.id = unique_ID;
+        person.firstName = firstName;
+        person.lastName = lastName;
+        person.email = email;
+        person.phone = phone;
+        person.selected = selected;
+
+        return person;
     }
 }
