@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -17,12 +18,14 @@ import ch.ost.mge.testat.coronarecord.adapter.PersonAdapter;
 import ch.ost.mge.testat.coronarecord.model.Location;
 import ch.ost.mge.testat.coronarecord.model.Person;
 import ch.ost.mge.testat.coronarecord.model.Report;
+import ch.ost.mge.testat.coronarecord.services.LocationService;
 import ch.ost.mge.testat.coronarecord.services.PersonService;
 import ch.ost.mge.testat.coronarecord.services.ReportService;
 
 public class PersonSelectActivity extends AppCompatActivity {
     public final static int REQ_CODE_NEW_PERSON = 1;
 
+    TextView locationNameLabel;
     RecyclerView recyclerView;
     PersonAdapter personAdapter;
     FloatingActionButton fabAddPerson;
@@ -34,11 +37,14 @@ public class PersonSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_select);
+        locationNameLabel = findViewById(R.id.personselect_lbl_locationname);
 
         report = new Report();
 
         int locationCode = (int) Objects.requireNonNull(getIntent().getExtras()).getInt("code");
-        location = new Location(0,0,""); // TODO: load location from locationservice
+        location = LocationService.getByCode(locationCode);
+        locationNameLabel.setText(location.getName());
+
         report.setLocation(location);
 
         recyclerView = findViewById(R.id.personselect_rv_persons);
