@@ -83,7 +83,7 @@ public class PersonSelectActivity extends AppCompatActivity implements PersonEdi
         fabSend.setOnClickListener(v -> {
             report.setPersonArrayList(personList.getSelected());
             ReportService.send(report);
-            // TODO: finish activity and go back to home screen
+            finish();
         });
     }
 
