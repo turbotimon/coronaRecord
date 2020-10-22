@@ -20,6 +20,7 @@ import ch.ost.mge.testat.coronarecord.database.PersonDao;
 import ch.ost.mge.testat.coronarecord.database.PersonDatabase;
 import ch.ost.mge.testat.coronarecord.model.Location;
 import ch.ost.mge.testat.coronarecord.model.Person;
+import ch.ost.mge.testat.coronarecord.model.PersonList;
 import ch.ost.mge.testat.coronarecord.model.Report;
 import ch.ost.mge.testat.coronarecord.services.LocationService;
 import ch.ost.mge.testat.coronarecord.services.PersonService;
@@ -37,6 +38,8 @@ public class PersonSelectActivity extends AppCompatActivity {
     Location location;
     PersonDatabase db;
     PersonDao personDao;
+    PersonService personService;
+    PersonList personList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +62,17 @@ public class PersonSelectActivity extends AppCompatActivity {
         Runnable write = () -> {
             db = Room.databaseBuilder(this, PersonDatabase.class, "room.db").build();
             personDao = db.personDao();
-            recyclerView = findViewById(R.id.personselect_rv_persons);
-            personAdapter = new PersonAdapter(this, new PersonService(personDao));
+            personService = new PersonService(personDao);
+            personList = new PersonList(personService);
 
+            personAdapter = new PersonAdapter(this, personList);
+            personList.addObserver(personAdapter);
+
+            recyclerView = findViewById(R.id.personselect_rv_persons);
             recyclerView.post(() -> recyclerView.setLayoutManager(new LinearLayoutManager(this)));
             recyclerView.post(() -> recyclerView.setAdapter(personAdapter));
+
+            personList.loadListFromService();
         };
 
         new Thread(write).start();
@@ -78,7 +87,7 @@ public class PersonSelectActivity extends AppCompatActivity {
 
         fabSend = findViewById(R.id.personselect_fab_send);
         fabSend.setOnClickListener(v -> {
-            report.setPersonArrayList(personAdapter.getSelectedPerson());
+            report.setPersonArrayList(personList.getSelected());
             ReportService.send(report);
             // TODO: finish activity and go back to home screen
         });
@@ -88,7 +97,7 @@ public class PersonSelectActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ_CODE_NEW_PERSON && resultCode == RESULT_OK) {
             Person person = (Person) Objects.requireNonNull(data.getExtras()).getSerializable("PERSON_OBJ");
-            personAdapter.add(person);
+            personList.add(person);
         }
     }
 }

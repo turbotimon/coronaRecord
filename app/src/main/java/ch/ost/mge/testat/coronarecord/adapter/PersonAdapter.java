@@ -4,42 +4,30 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.stream.Collectors;
 
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.model.Person;
+import ch.ost.mge.testat.coronarecord.model.PersonList;
 import ch.ost.mge.testat.coronarecord.services.PersonService;
 
-public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
+public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> implements Observer {
     Context context;
-    PersonService personService;
-    ArrayList<Person> personArrayList;
     LayoutInflater inflater;
+    PersonList personList;
 
-    public PersonAdapter(Context context, PersonService personService) {
+    public PersonAdapter(Context context, PersonList personList) {
         this.context = context;
-        this.personService = personService;
-        this.personArrayList = personService.getPersonArrayList();
+        this.personList = personList;
         inflater = LayoutInflater.from(context);
-    }
-
-    public void add(Person person){
-        person.setSelected(true);
-        personService.onAdd(person);
-        personArrayList.add(person);
-        notifyItemInserted(personArrayList.size());
-    }
-
-    public void remove(Person person) {
-        int position = personArrayList.indexOf(person);
-        personService.onRemove(person);
-        personArrayList.remove(position);
-        notifyItemRemoved(position);
     }
 
     @NonNull
@@ -52,32 +40,23 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
-        Person person = personArrayList.get(position);
+        Person person = personList.get(position);
         holder.name.setText(person.getName());
         holder.contactInfo.setText(person.getContactInfo());
         holder.checkbox.setChecked(person.getSelected());
-        holder.checkbox.setOnClickListener(v -> {
-            person.setSelected(v.isSelected());
+        holder.checkbox.setOnCheckedChangeListener((CompoundButton buttonView, boolean isChecked) -> {
+            person.setSelected(isChecked);
+            personList.update(person);
         });
     }
 
     @Override
     public int getItemCount() {
-        return personArrayList.size();
+        return personList.size();
     }
 
-    public ArrayList<Person> getSelectedPerson() {
-        ArrayList<Person> resPersonArrayList = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            resPersonArrayList = (ArrayList<Person>) personArrayList.stream().filter(Person::getSelected).collect(Collectors.toList());
-        } else {
-            for (Person person : personArrayList) {
-                if(person.getSelected()){
-                    resPersonArrayList.add(person);
-                }
-            }
-        }
-
-        return resPersonArrayList;
+    @Override
+    public void update(Observable o, Object arg) {
+        notifyDataSetChanged();
     }
 }

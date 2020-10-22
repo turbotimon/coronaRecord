@@ -4,19 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.button.MaterialButton;
-
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.fragments.SpinnerFragment;
-import ch.ost.mge.testat.coronarecord.model.People;
-import ch.ost.mge.testat.coronarecord.model.Person;
-import ch.ost.mge.testat.coronarecord.services.FileService;
 import ch.ost.mge.testat.coronarecord.services.LocationService;
-import ch.ost.mge.testat.coronarecord.services.SaveObjectService;
 
 public class WelcomeActivity extends AppCompatActivity {
 

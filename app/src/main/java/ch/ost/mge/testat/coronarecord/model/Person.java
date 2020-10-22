@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Person implements Serializable {
-
     static long ID = 0;
 
     private String firstName;
