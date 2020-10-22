@@ -4,34 +4,31 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Person implements Serializable {
-    static long ID = 0;
+    public static final String OBJECT_KEY = "PERSON_OBJ";
 
+    private int id = 0;
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
     private Boolean selected = false;
-    private final long unique_ID;
+
+    public Person(){};
 
     public Person(String firstName, String lastName, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.unique_ID = ++ID;
     }
 
     public Person(ch.ost.mge.testat.coronarecord.database.Person person) {
-        unique_ID = person.id;
+        id = person.id;
         firstName = person.firstName;
         lastName = person.lastName;
         email = person.email;
         phone = person.phone;
         selected = person.selected;
-    }
-
-    public Person(){
-        this.unique_ID = ++ID;
     }
 
     public String getName() {
@@ -74,16 +71,20 @@ public class Person implements Serializable {
         this.email = email;
     }
 
-    public long getUnique_ID() {
-        return unique_ID;
-    }
-
     public Boolean getSelected() {
         return selected;
     }
 
     public void setSelected(Boolean selected) {
         this.selected = selected;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -105,7 +106,7 @@ public class Person implements Serializable {
     public ch.ost.mge.testat.coronarecord.database.Person getPersonForDao(){
         ch.ost.mge.testat.coronarecord.database.Person person = new ch.ost.mge.testat.coronarecord.database.Person();
 
-        person.id = unique_ID;
+        person.id = id;
         person.firstName = firstName;
         person.lastName = lastName;
         person.email = email;

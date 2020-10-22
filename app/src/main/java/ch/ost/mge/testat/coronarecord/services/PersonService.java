@@ -22,7 +22,9 @@ public class PersonService {
 
     public void add(Person person) {
         Runnable write = () -> {
-            personDao.insert(person.getPersonForDao());
+            ch.ost.mge.testat.coronarecord.database.Person personDb = person.getPersonForDao();
+            personDao.insert(personDb);
+            person.setId(personDb.id);
         };
 
         new Thread(write).start();

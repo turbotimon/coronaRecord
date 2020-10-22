@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Person {
-    @PrimaryKey
-    public long id;
+    @PrimaryKey(autoGenerate = true)
+    public int id;
     @ColumnInfo
     public String firstName;
     @ColumnInfo

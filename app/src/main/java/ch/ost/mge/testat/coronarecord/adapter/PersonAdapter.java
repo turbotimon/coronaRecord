@@ -1,6 +1,7 @@
 package ch.ost.mge.testat.coronarecord.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,23 +10,25 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.stream.Collectors;
 
 import ch.ost.mge.testat.coronarecord.R;
+import ch.ost.mge.testat.coronarecord.activities.PersonActivity;
+import ch.ost.mge.testat.coronarecord.interfaces.PersonEditIntent;
 import ch.ost.mge.testat.coronarecord.model.Person;
 import ch.ost.mge.testat.coronarecord.model.PersonList;
-import ch.ost.mge.testat.coronarecord.services.PersonService;
 
 public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> implements Observer {
+
     Context context;
     LayoutInflater inflater;
     PersonList personList;
+    PersonEditIntent personEditIntent;
 
-    public PersonAdapter(Context context, PersonList personList) {
+    public PersonAdapter(Context context, PersonEditIntent personEditIntent,PersonList personList) {
         this.context = context;
+        this.personEditIntent = personEditIntent;
         this.personList = personList;
         inflater = LayoutInflater.from(context);
     }
@@ -47,6 +50,9 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> implem
         holder.checkbox.setOnCheckedChangeListener((CompoundButton buttonView, boolean isChecked) -> {
             person.setSelected(isChecked);
             personList.update(person);
+        });
+        holder.itemView.setOnClickListener(v -> {
+            personEditIntent.editPerson(person);
         });
     }
 
