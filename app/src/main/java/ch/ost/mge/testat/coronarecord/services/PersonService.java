@@ -1,14 +1,8 @@
 package ch.ost.mge.testat.coronarecord.services;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.room.Room;
-
 import java.util.ArrayList;
 
-import ch.ost.mge.testat.coronarecord.R;
-import ch.ost.mge.testat.coronarecord.adapter.PersonAdapter;
 import ch.ost.mge.testat.coronarecord.database.PersonDao;
-import ch.ost.mge.testat.coronarecord.database.PersonDatabase;
 import ch.ost.mge.testat.coronarecord.model.Person;
 
 public class PersonService {
