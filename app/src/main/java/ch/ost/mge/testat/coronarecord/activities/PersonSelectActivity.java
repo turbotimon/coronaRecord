@@ -96,7 +96,7 @@ public class PersonSelectActivity extends AppCompatActivity implements PersonEdi
                     personList.add(person);
                     break;
                 case REQ_CODE_EDIT_PERSON:
-                    personList.update(person);
+                    personList.updateReplace(person);
                     break;
             }
         }

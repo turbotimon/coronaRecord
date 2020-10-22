@@ -19,25 +19,34 @@ public class PersonList extends Observable {
     }
 
     public void remove(Person person) {
+        Integer index = personArrayList.indexOf(person);
         personArrayList.remove(person);
         setChanged();
-        personService.remove(person, this::notifyObservers);
+        personService.remove(person, () -> notifyObservers(index));
     }
 
     public void update(Person person) {
+        personService.update(person, () -> notifyObservers(person));
+    }
+
+    public void updateReplace(Person person) {
         personArrayList.set(personArrayList.indexOf(person),person);
         setChanged();
-        personService.update(person, this::notifyObservers);
+        update(person);
     }
 
     public void add(Person person) {
         personArrayList.add(person);
         setChanged();
-        personService.add(person,  this::notifyObservers);
+        personService.add(person,  () -> notifyObservers(person));
     }
 
     public Person get(int position){
         return personArrayList.get(position);
+    }
+
+    public int indexOf(Person person){
+        return personArrayList.indexOf(person);
     }
 
     public int size(){
