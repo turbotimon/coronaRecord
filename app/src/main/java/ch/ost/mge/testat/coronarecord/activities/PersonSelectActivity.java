@@ -37,9 +37,6 @@ public class PersonSelectActivity extends AppCompatActivity implements PersonEdi
     FloatingActionButton fabSend;
     Report report;
     Location location;
-    PersonDatabase db;
-    PersonDao personDao;
-    PersonService personService;
     PersonList personList;
 
     @Override
@@ -61,19 +58,16 @@ public class PersonSelectActivity extends AppCompatActivity implements PersonEdi
 
     private void initPersonList(){
         Runnable write = () -> {
-            db = Room.databaseBuilder(this, PersonDatabase.class, "room.db").build();
-            personDao = db.personDao();
-            personService = new PersonService(personDao);
-            personList = new PersonList(personService);
+            personList = new PersonList(new PersonService(this));
 
             personAdapter = new PersonAdapter(this, this, personList);
             personList.addObserver(personAdapter);
 
+            personList.loadListFromService();
+
             recyclerView = findViewById(R.id.personselect_rv_persons);
             recyclerView.post(() -> recyclerView.setLayoutManager(new LinearLayoutManager(this)));
             recyclerView.post(() -> recyclerView.setAdapter(personAdapter));
-
-            personList.loadListFromService();
         };
 
         new Thread(write).start();
@@ -97,10 +91,13 @@ public class PersonSelectActivity extends AppCompatActivity implements PersonEdi
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             Person person = (Person) Objects.requireNonNull(data.getExtras()).getSerializable(Person.OBJECT_KEY);
-            if (requestCode == REQ_CODE_NEW_PERSON) {
-                personList.add(person);
-            } else if (requestCode == REQ_CODE_EDIT_PERSON) {
-                personList.update(person);
+            switch (requestCode){
+                case REQ_CODE_NEW_PERSON:
+                    personList.add(person);
+                    break;
+                case REQ_CODE_EDIT_PERSON:
+                    personList.update(person);
+                    break;
             }
         }
     }

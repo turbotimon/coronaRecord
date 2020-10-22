@@ -1,5 +1,6 @@
 package ch.ost.mge.testat.coronarecord.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -50,10 +51,9 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> implem
         holder.checkbox.setOnCheckedChangeListener((CompoundButton buttonView, boolean isChecked) -> {
             person.setSelected(isChecked);
             personList.update(person);
+            notifyDataSetChanged();
         });
-        holder.itemView.setOnClickListener(v -> {
-            personEditIntent.editPerson(person);
-        });
+        holder.itemView.setOnClickListener(v -> personEditIntent.editPerson(person));
     }
 
     @Override
@@ -63,6 +63,6 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> implem
 
     @Override
     public void update(Observable o, Object arg) {
-        notifyDataSetChanged();
+        ((Activity)context).runOnUiThread(this::notifyDataSetChanged);
     }
 }

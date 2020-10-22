@@ -87,22 +87,6 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return firstName.equals(person.firstName) &&
-                lastName.equals(person.lastName) &&
-                phone.equals(person.phone) &&
-                email.equals(person.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, phone, email);
-    }
-
     public ch.ost.mge.testat.coronarecord.database.Person getPersonForDao(){
         ch.ost.mge.testat.coronarecord.database.Person person = new ch.ost.mge.testat.coronarecord.database.Person();
 
@@ -114,5 +98,18 @@ public class Person implements Serializable {
         person.selected = selected;
 
         return person;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
