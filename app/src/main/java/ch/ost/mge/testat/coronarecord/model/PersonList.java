@@ -1,7 +1,5 @@
 package ch.ost.mge.testat.coronarecord.model;
 
-import android.os.Build;
-
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.stream.Collectors;
@@ -18,22 +16,24 @@ public class PersonList extends Observable {
 
     public void loadListFromService() {
         this.personArrayList = personService.loadPersonEntries();
-        notifyObservers();
     }
 
     public void remove(Person person) {
         personArrayList.remove(person);
-        personService.remove(person, () -> notifyObservers(person));
+        setChanged();
+        personService.remove(person, this::notifyObservers);
     }
 
     public void update(Person person) {
         personArrayList.set(personArrayList.indexOf(person),person);
-        personService.update(person, () -> notifyObservers(person));
+        setChanged();
+        personService.update(person, this::notifyObservers);
     }
 
     public void add(Person person) {
         personArrayList.add(person);
-        personService.add(person,  () -> notifyObservers(person));
+        setChanged();
+        personService.add(person,  this::notifyObservers);
     }
 
     public Person get(int position){
