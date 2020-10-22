@@ -34,8 +34,8 @@ public class PersonService {
     public void add(Person person, Callback callback) {
         Runnable write = () -> {
             ch.ost.mge.testat.coronarecord.database.Person personDb = person.getPersonForDao();
-            personDao.insert(personDb);
-            person.setId(personDb.id);
+            long id = personDao.insert(personDb);
+            person.setId(id);
             callback.run();
         };
 

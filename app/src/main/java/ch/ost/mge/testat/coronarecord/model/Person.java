@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Person implements Serializable {
     public static final String OBJECT_KEY = "PERSON_OBJ";
 
-    private int id = 0;
+    private long id = 0;
     private String firstName;
     private String lastName;
     private String phone;
@@ -79,11 +79,11 @@ public class Person implements Serializable {
         this.selected = selected;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

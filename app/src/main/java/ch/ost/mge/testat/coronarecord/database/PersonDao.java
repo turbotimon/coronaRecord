@@ -14,7 +14,7 @@ public interface PersonDao {
     List<Person> getEntries();
 
     @Insert
-    void insert(Person person);
+    long insert(Person person);
 
     @Update
     void update(Person person);
