@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.adapter.PersonAdapter;
 import ch.ost.mge.testat.coronarecord.database.PersonDao;
 import ch.ost.mge.testat.coronarecord.database.PersonDatabase;
+import ch.ost.mge.testat.coronarecord.interfaces.PersonEditIntent;
 import ch.ost.mge.testat.coronarecord.model.Location;
 import ch.ost.mge.testat.coronarecord.model.Person;
 import ch.ost.mge.testat.coronarecord.model.PersonList;
@@ -26,8 +26,9 @@ import ch.ost.mge.testat.coronarecord.services.LocationService;
 import ch.ost.mge.testat.coronarecord.services.PersonService;
 import ch.ost.mge.testat.coronarecord.services.ReportService;
 
-public class PersonSelectActivity extends AppCompatActivity {
+public class PersonSelectActivity extends AppCompatActivity implements PersonEditIntent {
     public final static int REQ_CODE_NEW_PERSON = 1;
+    public final static int REQ_CODE_EDIT_PERSON = 2;
 
     TextView locationNameLabel;
     RecyclerView recyclerView;
@@ -36,9 +37,6 @@ public class PersonSelectActivity extends AppCompatActivity {
     FloatingActionButton fabSend;
     Report report;
     Location location;
-    PersonDatabase db;
-    PersonDao personDao;
-    PersonService personService;
     PersonList personList;
 
     @Override
@@ -60,19 +58,16 @@ public class PersonSelectActivity extends AppCompatActivity {
 
     private void initPersonList(){
         Runnable write = () -> {
-            db = Room.databaseBuilder(this, PersonDatabase.class, "room.db").build();
-            personDao = db.personDao();
-            personService = new PersonService(personDao);
-            personList = new PersonList(personService);
+            personList = new PersonList(new PersonService(this));
 
-            personAdapter = new PersonAdapter(this, personList);
+            personAdapter = new PersonAdapter(this, this, personList);
             personList.addObserver(personAdapter);
+
+            personList.loadListFromService();
 
             recyclerView = findViewById(R.id.personselect_rv_persons);
             recyclerView.post(() -> recyclerView.setLayoutManager(new LinearLayoutManager(this)));
             recyclerView.post(() -> recyclerView.setAdapter(personAdapter));
-
-            personList.loadListFromService();
         };
 
         new Thread(write).start();
@@ -81,23 +76,41 @@ public class PersonSelectActivity extends AppCompatActivity {
     private void initFabButtons(){
         fabAddPerson = findViewById(R.id.personselect_fab_addperson);
         fabAddPerson.setOnClickListener(v -> {
-            Intent secondActivityIntent = new Intent(this, PersonAddActivity.class);
-            startActivityForResult(secondActivityIntent, REQ_CODE_NEW_PERSON);
+            addPerson();
         });
 
         fabSend = findViewById(R.id.personselect_fab_send);
         fabSend.setOnClickListener(v -> {
             report.setPersonArrayList(personList.getSelected());
             ReportService.send(report);
-            // TODO: finish activity and go back to home screen
+            finish();
         });
     }
 
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQ_CODE_NEW_PERSON && resultCode == RESULT_OK) {
-            Person person = (Person) Objects.requireNonNull(data.getExtras()).getSerializable("PERSON_OBJ");
-            personList.add(person);
+        if(resultCode == RESULT_OK){
+            Person person = (Person) Objects.requireNonNull(data.getExtras()).getSerializable(Person.OBJECT_KEY);
+            switch (requestCode){
+                case REQ_CODE_NEW_PERSON:
+                    personList.add(person);
+                    break;
+                case REQ_CODE_EDIT_PERSON:
+                    personList.updateReplace(person);
+                    break;
+            }
         }
+    }
+
+    @Override
+    public void editPerson(Person person) {
+        Intent secondActivityIntent = new Intent(this, PersonActivity.class);
+        secondActivityIntent.putExtra(Person.OBJECT_KEY,person);
+        startActivityForResult(secondActivityIntent, REQ_CODE_EDIT_PERSON);
+    }
+
+    public void addPerson() {
+        Intent secondActivityIntent = new Intent(this, PersonActivity.class);
+        startActivityForResult(secondActivityIntent, REQ_CODE_NEW_PERSON);
     }
 }

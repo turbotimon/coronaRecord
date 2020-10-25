@@ -22,6 +22,5 @@ public class PersonViewHolder extends RecyclerView.ViewHolder{
         name = itemView.findViewById(R.id.rowitem_person_select_lbl_name);
         contactInfo = itemView.findViewById(R.id.rowitem_person_select_lbl_contactinfo);
         checkbox = itemView.findViewById(R.id.rowitem_person_select_cb_selected);
-
     }
 }

@@ -49,10 +49,10 @@ public class LocationSelectActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent locationSelect = new Intent(this, PersonSelectActivity.class);
-            locationSelect.putExtra("code", code);
-            startActivity(locationSelect);
-
+            Intent personSelect = new Intent(this, PersonSelectActivity.class);
+            personSelect.putExtra("code", code);
+            startActivity(personSelect);
+            finish();
         });
 
         editCode.addTextChangedListener(new TextWatcher() {

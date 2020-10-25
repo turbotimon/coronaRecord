@@ -4,34 +4,31 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Person implements Serializable {
-    static long ID = 0;
+    public static final String OBJECT_KEY = "PERSON_OBJ";
 
+    private long id = 0;
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
     private Boolean selected = false;
-    private final long unique_ID;
+
+    public Person(){};
 
     public Person(String firstName, String lastName, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.unique_ID = ++ID;
     }
 
     public Person(ch.ost.mge.testat.coronarecord.database.Person person) {
-        unique_ID = person.id;
+        id = person.id;
         firstName = person.firstName;
         lastName = person.lastName;
         email = person.email;
         phone = person.phone;
         selected = person.selected;
-    }
-
-    public Person(){
-        this.unique_ID = ++ID;
     }
 
     public String getName() {
@@ -74,10 +71,6 @@ public class Person implements Serializable {
         this.email = email;
     }
 
-    public long getUnique_ID() {
-        return unique_ID;
-    }
-
     public Boolean getSelected() {
         return selected;
     }
@@ -86,26 +79,18 @@ public class Person implements Serializable {
         this.selected = selected;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return firstName.equals(person.firstName) &&
-                lastName.equals(person.lastName) &&
-                phone.equals(person.phone) &&
-                email.equals(person.email);
+    public long getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, phone, email);
+    public void setId(long id) {
+        this.id = id;
     }
 
     public ch.ost.mge.testat.coronarecord.database.Person getPersonForDao(){
         ch.ost.mge.testat.coronarecord.database.Person person = new ch.ost.mge.testat.coronarecord.database.Person();
 
-        person.id = unique_ID;
+        person.id = id;
         person.firstName = firstName;
         person.lastName = lastName;
         person.email = email;
@@ -113,5 +98,18 @@ public class Person implements Serializable {
         person.selected = selected;
 
         return person;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
