@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.fragments.SpinnerFragment;
+import ch.ost.mge.testat.coronarecord.services.HttpService;
 import ch.ost.mge.testat.coronarecord.services.LocationService;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -22,11 +23,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Service initialisation
         LocationService.load();
+        HttpService.getLocations();
 
         //TODO nur zu Demozwecken mit wait
         wait(1000, () -> {
             Intent mainActivity = new Intent(this, MainActivity.class);
             startActivity(mainActivity);
+            this.finish(); // Schliesst die Acitivty, somit auch nicht mehr in der Navigation sichtbar
         });
 
     }
