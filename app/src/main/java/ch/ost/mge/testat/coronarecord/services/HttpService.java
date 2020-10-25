@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.List;
 
 import ch.ost.mge.testat.coronarecord.model.LocationItem;
+import ch.ost.mge.testat.coronarecord.model.LocationList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -29,18 +30,18 @@ public class HttpService {
         // TODO POST-Service
 
         // Service starten. Es kommt ein Call-Element zurück (eine Art "Promise")
-        Call<List<LocationItem>> call = service.getItems();
+        Call<LocationList> call = service.getItems();
 
 
         // Callbacks für den Call: onResponse=Success und onFailure=Error
-        call.enqueue(new Callback<List<LocationItem>>() {
+        call.enqueue(new Callback<LocationList>() {
             @Override
-            public void onResponse(Call<List<LocationItem>> call, retrofit2.Response<List<LocationItem>> response) {
-                Log.v("coronaRecord", "httpService: Received TODO-items: " + response.body().size());
+            public void onResponse(Call<LocationList> call, retrofit2.Response<LocationList> response) {
+                Log.v("coronaRecord", "httpService: Received TODO-items: " + response.body().locations.size());
             }
 
             @Override
-            public void onFailure(Call<List<LocationItem>> call, Throwable t) {
+            public void onFailure(Call<LocationList> call, Throwable t) {
                 //setOutputText("Could not read data: " + t.getMessage());            }
                 Log.v("coronaRecord", "httpService: ERROR Could not read data: " + t.getMessage());
             }
