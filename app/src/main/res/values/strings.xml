@@ -2,4 +2,18 @@
     <string name="app_name">coronaRecord</string>
     <string name="locationselect_invalid_code_length">Code must be exact 6 digits long</string>
     <string name="locationselect_invalid_code">This code is not valid</string>
+    <string name="enter_code">Your location should provide you with a code. Enter this Code here</string>
+    <string name="check_code">Check</string>
+    <string name="location_select_info">To start, please select how to enter your location</string>
+    <string name="enter_code_button">Enter Code</string>
+    <string name="scan_qr">Scan QR</string>
+    <string name="use_gps">Use GPS</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="qr_code_found">QR Code Found</string>
+    <string name="welcome">Welcome!</string>
 </resources>

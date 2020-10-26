@@ -10,10 +10,10 @@
         android:id="@+id/personselect_lbl_locationname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="Location Name"
+        android:text="Location Name (placeholder)"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
