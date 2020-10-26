@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
 
+import ch.ost.mge.testat.coronarecord.services.LocationService;
 import ch.ost.mge.testat.coronarecord.services.QRCodeFoundListener;
 import ch.ost.mge.testat.coronarecord.services.QRCodeImageAnalyzer;
 
@@ -52,13 +54,30 @@ public class QrScannerActivity extends AppCompatActivity  {
 
         qrCodeFoundButton = findViewById(R.id.qrscanner_btn_found);
         qrCodeFoundButton.setVisibility(View.INVISIBLE);
-        qrCodeFoundButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), qrCode, Toast.LENGTH_SHORT).show();
-                Log.i(MainActivity.class.getSimpleName(), "QR Code Found: " + qrCode);
-            }
-        });
+
+
+
+        qrCodeFoundButton.setOnClickListener( v -> {
+
+                    int code;
+                    try {
+                        String s = qrCode.split("\\.")[1];
+                        code = Integer.parseInt(s);
+                    } catch (Exception e) {
+                        code = 0;
+                    }
+
+                    if (!LocationService.containsCode(code)) {
+                        Toast.makeText(getApplicationContext(), "Code invalid: " + qrCode, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Intent personSelect = new Intent(this, PersonSelectActivity.class);
+                    personSelect.putExtra("code", code);
+                    startActivity(personSelect);
+                    finish();
+                });
+
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         requestCamera();
