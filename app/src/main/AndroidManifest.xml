@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="ch.ost.mge.testat.coronarecord">
+
+    <!-- permissions for QR scanner -->
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- permissions for httpService -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- TODO maybe-persmission-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -9,7 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.QrScannerActivity"></activity>
+        <activity android:name=".activities.LocationSelectActivity" />
+        <activity android:name=".activities.PersonSelectActivity" />
+        <activity android:name=".activities.PersonActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,15 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/main_txt_select"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/location_select_info"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/main_btn_entercode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- TODO iconSize soll sich automatisch der grösse des Buttons anpassen -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_btn_entercode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/enter_code_button"
+        app:icon="@drawable/ic_input"
+        app:iconSize="94dp"
+        app:iconPadding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/main_btn_scanqr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_txt_select" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_btn_scanqr"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/scan_qr"
+        app:icon="@drawable/ic_qr_code"
+        app:iconSize="94dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_btn_gps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_btn_entercode" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_btn_gps"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/use_gps"
+        app:icon="@drawable/ic_location"
+        app:iconSize="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_btn_scanqr"
+        />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
