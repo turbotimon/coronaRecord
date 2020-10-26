@@ -16,4 +16,11 @@
     <string name="save">Save</string>
     <string name="qr_code_found">QR Code Found</string>
     <string name="welcome">Welcome!</string>
+    <string name="code_ivalid">"Code invalid: "</string>
+    <string name="cam_permission_denied">Camera Permission Denied</string>
+    <string name="cam_error">"Error starting camera "</string>
+    <string name="delete">"Delete "</string>
+    <string name="delete_person_question">\"Do you really want to delete \"</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

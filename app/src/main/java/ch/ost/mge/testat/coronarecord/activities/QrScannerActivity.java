@@ -68,7 +68,7 @@ public class QrScannerActivity extends AppCompatActivity  {
                     }
 
                     if (!LocationService.containsCode(code)) {
-                        Toast.makeText(getApplicationContext(), "Code invalid: " + qrCode, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.code_ivalid) + qrCode, Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -101,7 +101,7 @@ public class QrScannerActivity extends AppCompatActivity  {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startCamera();
             } else {
-                Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.cam_permission_denied, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -112,7 +112,7 @@ public class QrScannerActivity extends AppCompatActivity  {
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
                 bindCameraPreview(cameraProvider);
             } catch (ExecutionException | InterruptedException e) {
-                Toast.makeText(this, "Error starting camera " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.cam_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }, ContextCompat.getMainExecutor(this));
     }

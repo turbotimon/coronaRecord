@@ -57,11 +57,11 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> implem
         holder.itemView.setOnClickListener(v -> personEditIntent.editPerson(person));
         holder.itemView.setOnLongClickListener(v -> {
             new AlertDialog.Builder(context)
-                    .setTitle("Delete " + person.getFirstName())
-                    .setMessage("Do you really want to delete " + person.getFirstName() + "?")
+                    .setTitle(context.getString(R.string.delete) + person.getFirstName())
+                    .setMessage(context.getString(R.string.delete_person_question) + person.getFirstName() + "?")
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setPositiveButton("Yes", (dialog, whichButton) -> personList.remove(person))
-                    .setNegativeButton("No", null).show();
+                    .setPositiveButton(R.string.yes, (dialog, whichButton) -> personList.remove(person))
+                    .setNegativeButton(R.string.no, null).show();
             return false;
         });
     }
