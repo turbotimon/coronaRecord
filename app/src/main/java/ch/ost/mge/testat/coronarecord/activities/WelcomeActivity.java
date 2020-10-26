@@ -15,6 +15,7 @@ import ch.ost.mge.testat.coronarecord.model.Location;
 import ch.ost.mge.testat.coronarecord.model.ReportItem;
 import ch.ost.mge.testat.coronarecord.services.HttpService;
 import ch.ost.mge.testat.coronarecord.services.LocationService;
+import ch.ost.mge.testat.coronarecord.services.ReportService;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -27,11 +28,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Service initialisation
         LocationService.load();
-        HttpService.getLocations();
-
-        //TODO remove after tests
-        ReportItem report = new ReportItem(999, new Location(111,222,"myLoc"), new Date(), new Date());
-        HttpService.sendRecord(report);
 
         //TODO nur zu Demozwecken mit wait
         wait(1000, () -> {

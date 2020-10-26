@@ -31,6 +31,11 @@ public class Person implements Serializable {
         selected = person.selected;
     }
 
+    @Override
+    public String toString(){
+        return getName() + " " + getContactInfo();
+    }
+
     public String getName() {
         return firstName + ' ' + lastName;
     }

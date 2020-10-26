@@ -2,19 +2,62 @@ package ch.ost.mge.testat.coronarecord.services;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.HashMap;
 import ch.ost.mge.testat.coronarecord.model.Location;
+import ch.ost.mge.testat.coronarecord.model.LocationItem;
+import ch.ost.mge.testat.coronarecord.model.LocationList;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LocationService {
 
     private static HashMap<Integer, Location> locations;
     private static Boolean loaded = false;
 
-    public static void load(){
-        //TODO
-        fillWithDemo();
-        loaded=true;
+    final static String URL = "https://coronarecord.herokuapp.com/";
+
+    public static void load() {
+
+        Log.v("coronaRecord", "LocationService: getLocations() started..");
+
+        // Retrofit init
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // Services erstellen
+        LocationGET service = retrofit.create(LocationGET.class); //TODO locitem -> location
+
+        // Service starten. Es kommt ein Call-Element zurück (eine Art "Promise")
+        Call<LocationList> call = service.getItems();
+
+
+        // Callbacks für den Call: onResponse=Success und onFailure=Error
+        call.enqueue(new Callback<LocationList>() {
+            @Override
+            public void onResponse(Call<LocationList> call, retrofit2.Response<LocationList> response) {
+                Log.v("coronaRecord", "LocationService: Received TODO-items: " + response.body().locations.size());
+                locations = new HashMap<>();
+                for (LocationItem l : response.body().locations){
+                    locations.put(l.code, new Location(l.id, l.code, l.name));
+                }
+                loaded=true;
+            }
+
+            @Override
+            public void onFailure(Call<LocationList> call, Throwable t) {
+                //setOutputText("Could not read data: " + t.getMessage());            }
+                Log.v("coronaRecord", "LocationService: ERROR Could not read data: " + t.getMessage());
+                fillWithDemo();
+                loaded=true;
+            }
+        });
+
     }
 
     public static Location getByCode(int code){
