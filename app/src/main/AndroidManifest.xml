@@ -3,9 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="ch.ost.mge.testat.coronarecord">
 
-    <!-- need for QR scanner -->
+    <!-- permissions for QR scanner -->
     <uses-feature android:name="android.hardware.camera.any" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <!-- permissions for httpService -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- TODO maybe-persmission-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 
     <application
         android:allowBackup="true"

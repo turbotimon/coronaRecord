@@ -7,8 +7,13 @@ import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Date;
+
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.fragments.SpinnerFragment;
+import ch.ost.mge.testat.coronarecord.model.Location;
+import ch.ost.mge.testat.coronarecord.model.ReportItem;
+import ch.ost.mge.testat.coronarecord.services.HttpService;
 import ch.ost.mge.testat.coronarecord.services.LocationService;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -22,11 +27,17 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Service initialisation
         LocationService.load();
+        HttpService.getLocations();
+
+        //TODO remove after tests
+        ReportItem report = new ReportItem(999, new Location(111,222,"myLoc"), new Date(), new Date());
+        HttpService.sendRecord(report);
 
         //TODO nur zu Demozwecken mit wait
         wait(1000, () -> {
             Intent mainActivity = new Intent(this, MainActivity.class);
             startActivity(mainActivity);
+            this.finish(); // Schliesst die Acitivty, somit auch nicht mehr in der Navigation sichtbar
         });
 
     }
