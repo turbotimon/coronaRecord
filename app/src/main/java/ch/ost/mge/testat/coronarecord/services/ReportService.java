@@ -17,7 +17,7 @@ public class ReportService {
 
     public static void send(Report report) {
 
-        Log.v("coronaRecord", "httpService: sendRecord() started..");
+        Log.v("coronaRecord", "ReportService: sendRecord() started..");
 
         // Report erstellen
         ReportItem reportItem = new ReportItem(report.getId(), report.getLocation(), report.getArrived(), report.getDeparted(), report.getPersonArrayList().toString());
@@ -40,7 +40,7 @@ public class ReportService {
                 if(response.isSuccessful()) {
                     //showResponse(response.body().toString());
                     //Log.i(TAG, "post submitted to API." + response.body().toString());
-                    Log.v("coronaRecord", "httpService: Send Record Successful");
+                    Log.v("coronaRecord", "ReportService: Send Record Successful");
                 }
             }
 
@@ -49,7 +49,7 @@ public class ReportService {
 
             @Override
             public void onFailure(Call<ReportItem> call, Throwable t) {
-                Log.v("coronaRecord", "httpService: ERROR Could not send data: " + t.getMessage());
+                Log.v("coronaRecord", "ReportService: ERROR Could not send data: " + t.getMessage());
             }
         });
     }
