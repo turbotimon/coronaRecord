@@ -14,13 +14,15 @@ public class ReportItem {
     public Date arrived;
     @SerializedName("departed")
     public Date departed;
-    //TODO Persons ArrayList
+    @SerializedName("personlist")
+    public String personList;
 
-    public ReportItem(Integer id, Location location, Date arrived, Date departed) {
+    public ReportItem(Integer id, Location location, Date arrived, Date departed, String personList) {
         this.id = id;
         this.location = location;
         this.arrived = arrived;
         this.departed = departed;
+        this.personList = personList;
     }
 
 }

@@ -4,6 +4,7 @@ package ch.ost.mge.testat.coronarecord.services;
 
 import android.util.Log;
 
+import ch.ost.mge.testat.coronarecord.model.Person;
 import ch.ost.mge.testat.coronarecord.model.Report;
 import ch.ost.mge.testat.coronarecord.model.ReportItem;
 import retrofit2.Call;
@@ -19,7 +20,7 @@ public class ReportService {
         Log.v("coronaRecord", "httpService: sendRecord() started..");
 
         // Report erstellen
-        ReportItem reportItem = new ReportItem(report.getId(), report.getLocation(), report.getArrived(), report.getDeparted());
+        ReportItem reportItem = new ReportItem(report.getId(), report.getLocation(), report.getArrived(), report.getDeparted(), report.getPersonArrayList().toString());
 
         // Retrofit init
         Retrofit retrofit = new Retrofit.Builder()
