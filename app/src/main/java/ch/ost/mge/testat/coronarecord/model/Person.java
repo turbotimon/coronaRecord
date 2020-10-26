@@ -35,7 +35,7 @@ public class Person implements Serializable {
     public String toString(){
         return getName() + " " + getContactInfo();
     }
-    
+
     public String getName() {
         return firstName + ' ' + lastName;
     }

@@ -27,7 +27,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Service initialisation
         LocationService.load();
-        HttpService.getLocations();
 
         //TODO remove after tests
         ReportItem report = new ReportItem(999, new Location(111,222,"myLoc"), new Date(), new Date());
