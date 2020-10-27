@@ -8,8 +8,6 @@ import retrofit2.http.Field;
 import retrofit2.http.POST;
 
 public interface ReportPOST {
-    // TODO
     @POST("/record")
-    //@FormUrlEncoded
     public Call<ReportItem> post(@Body ReportItem post);
 }

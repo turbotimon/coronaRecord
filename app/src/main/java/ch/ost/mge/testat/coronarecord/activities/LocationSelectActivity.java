@@ -43,8 +43,7 @@ public class LocationSelectActivity extends AppCompatActivity {
 
             int code = getEditCodeValue();
 
-            //TODO check if code is valid
-            if (!isCodeValid(code)){
+            if (!LocationService.containsCode(code)){
                 editCode.setError(getString(R.string.locationselect_invalid_code));
                 return;
             }
@@ -78,11 +77,6 @@ public class LocationSelectActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-
-    public boolean isCodeValid(int code){
-        return LocationService.containsCode(code);
     }
 
     public int getEditCodeValue(){

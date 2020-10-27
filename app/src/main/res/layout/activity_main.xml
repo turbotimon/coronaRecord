@@ -20,8 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TODO iconSize soll sich automatisch der grösse des Buttons anpassen -->
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/main_btn_entercode"
         android:layout_width="0dp"

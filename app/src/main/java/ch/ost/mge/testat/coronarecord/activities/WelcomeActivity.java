@@ -7,15 +7,9 @@ import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Date;
-
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.fragments.SpinnerFragment;
-import ch.ost.mge.testat.coronarecord.model.Location;
-import ch.ost.mge.testat.coronarecord.model.ReportItem;
-import ch.ost.mge.testat.coronarecord.services.HttpService;
 import ch.ost.mge.testat.coronarecord.services.LocationService;
-import ch.ost.mge.testat.coronarecord.services.ReportService;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -29,7 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // Service initialisation
         LocationService.load();
 
-        //TODO nur zu Demozwecken mit wait
+        // Wait for services to end
         wait(1000, () -> {
             Intent mainActivity = new Intent(this, MainActivity.class);
             startActivity(mainActivity);
@@ -43,7 +37,6 @@ public class WelcomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.welcome_container_runner, spinnerFragment).commit();
     }
 
-    // TODO nur zu Show Zwecken
     private void wait(int ms, Runnable callback){
         Looper looper = Looper.getMainLooper();
         Handler handler = new Handler(looper);
