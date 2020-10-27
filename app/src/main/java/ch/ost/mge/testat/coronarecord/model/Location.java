@@ -2,7 +2,7 @@ package ch.ost.mge.testat.coronarecord.model;
 
 public class Location {
 
-    public final static int CODE_LENGTH = 6; //TODO prüfen beim einfügen/ändern oder constraint?
+    public final static int CODE_LENGTH = 6;
 
     private Integer id;
     private Integer code;

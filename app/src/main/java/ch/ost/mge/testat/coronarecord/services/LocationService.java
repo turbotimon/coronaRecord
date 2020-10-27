@@ -31,7 +31,7 @@ public class LocationService {
                 .build();
 
         // Services erstellen
-        LocationGET service = retrofit.create(LocationGET.class); //TODO locitem -> location
+        LocationGET service = retrofit.create(LocationGET.class);
 
         // Service starten. Es kommt ein Call-Element zurück (eine Art "Promise")
         Call<LocationList> call = service.getItems();
@@ -70,7 +70,6 @@ public class LocationService {
         return locations.containsKey(code);
     }
 
-    //TODO This is just for Demo
     private static void fillWithDemo(){
         locations = new HashMap<>();
         Location t0 = new Location(0, 123456, "Local Host");

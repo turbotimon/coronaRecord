@@ -29,7 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // Service initialisation
         LocationService.load();
 
-        //TODO nur zu Demozwecken mit wait
+        // Wait for services to end
         wait(1000, () -> {
             Intent mainActivity = new Intent(this, MainActivity.class);
             startActivity(mainActivity);
@@ -43,7 +43,6 @@ public class WelcomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.welcome_container_runner, spinnerFragment).commit();
     }
 
-    // TODO nur zu Show Zwecken
     private void wait(int ms, Runnable callback){
         Looper looper = Looper.getMainLooper();
         Handler handler = new Handler(looper);
