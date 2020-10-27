@@ -8,5 +8,5 @@ import retrofit2.http.GET;
 
 public interface LocationGET {
     @GET("/locations")
-    Call<LocationList>getItems();
+    Call<LocationList> get();
 }
