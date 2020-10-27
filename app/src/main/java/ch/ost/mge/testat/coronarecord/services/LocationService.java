@@ -1,7 +1,5 @@
 package ch.ost.mge.testat.coronarecord.services;
 
-import android.app.Application;
-import android.content.Context;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -31,10 +29,10 @@ public class LocationService {
                 .build();
 
         // Services erstellen
-        LocationGET service = retrofit.create(LocationGET.class); //TODO locitem -> location
+        LocationGET service = retrofit.create(LocationGET.class);
 
         // Service starten. Es kommt ein Call-Element zurück (eine Art "Promise")
-        Call<LocationList> call = service.getItems();
+        Call<LocationList> call = service.get();
 
 
         // Callbacks für den Call: onResponse=Success und onFailure=Error
@@ -70,7 +68,6 @@ public class LocationService {
         return locations.containsKey(code);
     }
 
-    //TODO This is just for Demo
     private static void fillWithDemo(){
         locations = new HashMap<>();
         Location t0 = new Location(0, 123456, "Local Host");
