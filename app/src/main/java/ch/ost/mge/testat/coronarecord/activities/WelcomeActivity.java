@@ -7,15 +7,9 @@ import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Date;
-
 import ch.ost.mge.testat.coronarecord.R;
 import ch.ost.mge.testat.coronarecord.fragments.SpinnerFragment;
-import ch.ost.mge.testat.coronarecord.model.Location;
-import ch.ost.mge.testat.coronarecord.model.ReportItem;
-import ch.ost.mge.testat.coronarecord.services.HttpService;
 import ch.ost.mge.testat.coronarecord.services.LocationService;
-import ch.ost.mge.testat.coronarecord.services.ReportService;
 
 public class WelcomeActivity extends AppCompatActivity {
 
